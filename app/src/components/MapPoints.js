@@ -7,62 +7,161 @@ import { MapContainer, TileLayer, Marker, Popup, Polygon, useMapEvents } from 'r
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
+import {Request, POST} from '../api/index';
+import { ShowAlert } from '../utils/alerts_utils';
+
 
 let _sectorsCoords =  [
-    {
-        "x_min": "55.55",
-        "x_max": "55.68333333333333",
-        "y_min": "37.3",
-        "y_max": "37.5"
-    },
-    {
-        "x_min": "55.55",
-        "x_max": "55.68333333333333",
-        "y_min": "37.5",
-        "y_max": "37.699999999999996"
-    },
-    {
-        "x_min": "55.55",
-        "x_max": "55.68333333333333",
-        "y_min": "37.699999999999996",
-        "y_max": "37.9"
-    },
-    {
-        "x_min": "55.68333333333333",
-        "x_max": "55.81666666666667",
-        "y_min": "37.3",
-        "y_max": "37.5"
-    },
-    {
-        "x_min": "55.68333333333333",
-        "x_max": "55.81666666666667",
-        "y_min": "37.5",
-        "y_max": "37.699999999999996"
-    },
-    {
-        "x_min": "55.68333333333333",
-        "x_max": "55.81666666666667",
-        "y_min": "37.699999999999996",
-        "y_max": "37.9"
-    },
-    {
-        "x_min": "55.81666666666667",
-        "x_max": "55.95",
-        "y_min": "37.3",
-        "y_max": "37.5"
-    },
-    {
-        "x_min": "55.81666666666667",
-        "x_max": "55.95",
-        "y_min": "37.5",
-        "y_max": "37.699999999999996"
-    },
-    {
-        "x_min": "55.81666666666667",
-        "x_max": "55.95",
-        "y_min": "37.699999999999996",
-        "y_max": "37.9"
-    },
+    // {
+    //     "x_max": "55.55",
+    //     "x_min": "55.416666666666664",
+    //     "y_max": "37.3",
+    //     "y_min": "37.099999999999994"
+    // },
+    // {
+    //     "x_max": "55.55",
+    //     "x_min": "55.416666666666664",
+    //     "y_max": "37.5",
+    //     "y_min": "37.3"
+    // },
+    // {
+    //     "x_max": "55.55",
+    //     "x_min": "55.416666666666664",
+    //     "y_max": "37.699999999999996",
+    //     "y_min": "37.5"
+    // },
+    // {
+    //     "x_max": "55.55",
+    //     "x_min": "55.416666666666664",
+    //     "y_max": "37.9",
+    //     "y_min": "37.699999999999996"
+    // },
+    // {
+    //     "x_max": "55.55",
+    //     "x_min": "55.416666666666664",
+    //     "y_max": "38.1",
+    //     "y_min": "37.9"
+    // },
+    // {
+    //     "x_max": "55.68333333333333",
+    //     "x_min": "55.55",
+    //     "y_max": "37.3",
+    //     "y_min": "37.099999999999994"
+    // },
+    // {
+    //     "x_max": "55.68333333333333",
+    //     "x_min": "55.55",
+    //     "y_max": "37.5",
+    //     "y_min": "37.3"
+    // },
+    // {
+    //     "x_max": "55.68333333333333",
+    //     "x_min": "55.55",
+    //     "y_max": "37.699999999999996",
+    //     "y_min": "37.5"
+    // },
+    // {
+    //     "x_max": "55.68333333333333",
+    //     "x_min": "55.55",
+    //     "y_max": "37.9",
+    //     "y_min": "37.699999999999996"
+    // },
+    // {
+    //     "x_max": "55.68333333333333",
+    //     "x_min": "55.55",
+    //     "y_max": "38.1",
+    //     "y_min": "37.9"
+    // },
+    // {
+    //     "x_max": "55.81666666666667",
+    //     "x_min": "55.68333333333333",
+    //     "y_max": "37.3",
+    //     "y_min": "37.099999999999994"
+    // },
+    // {
+    //     "x_max": "55.81666666666667",
+    //     "x_min": "55.68333333333333",
+    //     "y_max": "37.5",
+    //     "y_min": "37.3"
+    // },
+    // {
+    //     "x_max": "55.81666666666667",
+    //     "x_min": "55.68333333333333",
+    //     "y_max": "37.699999999999996",
+    //     "y_min": "37.5"
+    // },
+    // {
+    //     "x_max": "55.81666666666667",
+    //     "x_min": "55.68333333333333",
+    //     "y_max": "37.9",
+    //     "y_min": "37.699999999999996"
+    // },
+    // {
+    //     "x_max": "55.81666666666667",
+    //     "x_min": "55.68333333333333",
+    //     "y_max": "38.1",
+    //     "y_min": "37.9"
+    // },
+    // {
+    //     "x_max": "55.95",
+    //     "x_min": "55.81666666666667",
+    //     "y_max": "37.3",
+    //     "y_min": "37.099999999999994"
+    // },
+    // {
+    //     "x_max": "55.95",
+    //     "x_min": "55.81666666666667",
+    //     "y_max": "37.5",
+    //     "y_min": "37.3"
+    // },
+    // {
+    //     "x_max": "55.95",
+    //     "x_min": "55.81666666666667",
+    //     "y_max": "37.699999999999996",
+    //     "y_min": "37.5"
+    // },
+    // {
+    //     "x_max": "55.95",
+    //     "x_min": "55.81666666666667",
+    //     "y_max": "37.9",
+    //     "y_min": "37.699999999999996"
+    // },
+    // {
+    //     "x_max": "55.95",
+    //     "x_min": "55.81666666666667",
+    //     "y_max": "38.1",
+    //     "y_min": "37.9"
+    // },
+    // {
+    //     "x_max": "55.81666666666667",
+    //     "x_min": "55.95",
+    //     "y_max": "37.3",
+    //     "y_min": "37.099999999999994"
+    // },
+    // {
+    //     "x_max": "55.81666666666667",
+    //     "x_min": "55.95",
+    //     "y_max": "37.5",
+    //     "y_min": "37.3"
+    // },
+    // {
+    //     "x_max": "55.81666666666667",
+    //     "x_min": "55.95",
+    //     "y_max": "37.699999999999996",
+    //     "y_min": "37.5"
+    // },
+    // {
+    //     "x_max": "55.81666666666667",
+    //     "x_min": "55.95",
+    //     "y_max": "37.9",
+    //     "y_min": "37.699999999999996"
+    // },
+    // {
+    //     "x_max": "55.81666666666667",
+    //     "x_min": "55.95",
+    //     "y_max": "38.1",
+    //     "y_min": "37.9"
+    // }
 ]
 
 
@@ -77,7 +176,7 @@ const customIcon = new L.Icon({
 
 
 // Функция для генерации статичной сетки относительно центра
-const generateStaticGrid = (center, rows, cols, cellSize) => {
+const generateStaticGrid = (center, rows, cols, cellSize, sectorCoords) => {
     const [centerLat, centerLon] = center;
     const latCorrection = cellSize; // Шаг по широте
     const lonCorrection = cellSize / Math.cos(centerLat * Math.PI / 180); // Коррекция шага по долготе
@@ -85,24 +184,12 @@ const generateStaticGrid = (center, rows, cols, cellSize) => {
     const startLon = centerLon - (cols / 2) * lonCorrection;
     const polygons = [];
 
-    // for (let i = 0; i < rows; i++) {
-    //     for (let j = 0; j < cols; j++) {
-    //         const cell = [
-    //             [startLat + i * latCorrection, startLon + j * lonCorrection],
-    //             [startLat + (i + 1) * latCorrection, startLon + j * lonCorrection],
-    //             [startLat + (i + 1) * latCorrection, startLon + (j + 1) * lonCorrection],
-    //             [startLat + i * latCorrection, startLon + (j + 1) * lonCorrection]
-    //         ];
-    //         polygons.push(cell);
-    //     }
-    // }
-
-    for (let sec in Object.values(_sectorsCoords)) {
+    for (let sec in Object.values(sectorCoords)) {
         const cell = [
-            [Object.values(_sectorsCoords)[sec].x_min, Object.values(_sectorsCoords)[sec].y_min],
-            [Object.values(_sectorsCoords)[sec].x_max, Object.values(_sectorsCoords)[sec].y_min],
-            [Object.values(_sectorsCoords)[sec].x_max, Object.values(_sectorsCoords)[sec].y_max],
-            [Object.values(_sectorsCoords)[sec].x_min, Object.values(_sectorsCoords)[sec].y_max]
+            [Object.values(sectorCoords)[sec].x_min, Object.values(sectorCoords)[sec].y_min],
+            [Object.values(sectorCoords)[sec].x_max, Object.values(sectorCoords)[sec].y_min],
+            [Object.values(sectorCoords)[sec].x_max, Object.values(sectorCoords)[sec].y_max],
+            [Object.values(sectorCoords)[sec].x_min, Object.values(sectorCoords)[sec].y_max]
         ];
         polygons.push(cell);
     }
@@ -115,20 +202,8 @@ const gridRows = 5;  // Количество рядов
 const gridCols = 5;  // Количество колонок
 const gridSize = 0.07;  // Размер ячейки сетки
 
-const MyPoints = ({ points }) => {
-    const grid = generateStaticGrid(gridCenter, gridRows, gridCols, gridSize);
-
-    // const isPointInSquare = (point, vertex1, vertex2) => {
-    //     const minLat = Math.min(vertex1[0], vertex2[0]);
-    //     const maxLat = Math.max(vertex1[0], vertex2[0]);
-    //     const minLon = Math.min(vertex1[1], vertex2[1]);
-    //     const maxLon = Math.max(vertex1[1], vertex2[1]);
-    
-    //     const lat = parseFloat(point.lat);
-    //     const lon = parseFloat(point.lon);
-    
-    //     return lat >= minLat && lat <= maxLat && lon >= minLon && lon <= maxLon;
-    // };
+const MyPoints = ({ points, sectorCoords }) => {
+    const grid = generateStaticGrid(gridCenter, gridRows, gridCols, gridSize, sectorCoords);
 
     return (
         <MapContainer center={gridCenter} zoom={10} style={{ height: '75vh', width: '100%' }}>
@@ -178,7 +253,7 @@ const BestSectors = ({ pointsSectors, handleSectorClick }) => {
     return (
         <div>
             <ul style={{ listStyle: 'none', padding: 0 }}>
-                {Object.keys(pointsSectors).map((sector, index) => (
+                {Object.keys(pointsSectors).slice(0, 15).map((sector, index) => (
                     <li
                         style={{ marginBottom: '10px' }}
                         key={index}
@@ -204,6 +279,7 @@ const BestSectors = ({ pointsSectors, handleSectorClick }) => {
 
 const MapPoints = ({ 
     points,
+    sectorCoords,
     pointsSectors,
     selectedPoints,
     setSelectedPoints,
@@ -237,7 +313,7 @@ const MapPoints = ({
                 <Col md={9}>
                     <h3>Карта</h3>
                     <div style={{boxShadow: '0 0 6px gray'}}>
-                        <MyPoints points={selectedPoints}/>
+                        <MyPoints points={selectedPoints} sectorCoords={sectorCoords}/>
                     </div>
                 </Col>
                 <Col md={3}>
