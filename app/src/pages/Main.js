@@ -12,31 +12,6 @@ import { BaseUrl } from '../Constants';
 import { ShowAlert } from '../utils/alerts_utils'; 
 
 let pointsSectorsDefault = {
-    // "1": {
-    //     "points": [{"lat": "55.573691", "lon": "37.631423", "azimuth": 273},
-    //     {"lat": "55.584765", "lon": "37.712454", "azimuth": 232},],
-    //     "selected": false,
-    // },
-    // "2": {
-    //     "points": [{"lat": "55.808425457052", "lon": "37.388807961811", "azimuth": 188},
-    //     {"lat": "55.674378", "lon": "37.422364", "azimuth": 333},],
-    //     "selected": false,
-    // },
-    // "3": {
-    //     "points": [{"lat": "55.608396", "lon": "37.766383", "azimuth": 54},
-    //     {"lat": "55.908622", "lon": "37.553523", "azimuth": 260},],
-    //     "selected": false,
-    // },
-    // "4": {
-    //     "points": [{"lat": "55.71", "lon": "37.3875", "azimuth": 162},
-    //     {"lat": "55.626667", "lon": "37.472993", "azimuth": 327},],
-    //     "selected": false,
-    // },
-    // "5": {
-    //     "points": [{"lat": "55.82762", "lon": "37.832285", "azimuth": 140},
-    //     {"lat": "55.864929", "lon": "37.402182", "азимут": 31},],
-    //     "selected": false,
-    //     }
 }
 
 const Filters = ({
@@ -199,7 +174,7 @@ const MainPage = () => {
         // await fetch(BaseUrl + 'api/external/sectors/recom', {method:"POST"})
         let response = await Request.send({
             method: 'GET',
-            url: 'http://localhost:8081/api/external/sectors/',
+            url: '/api/external/sectors/',
             validStatuses: [200, 201, 404]
         })
         .then(response => {
@@ -254,7 +229,7 @@ const MainPage = () => {
             // await fetch(BaseUrl + 'api/external/sectors/recom', {method:"POST"})
             let response = await Request.send({
                 method: 'POST',
-                url: 'http://localhost:8081/api/external/sectors/recom/',
+                url: '/api/external/sectors/recom/',
                 data: {
                     "filters": filters
                 },
