@@ -8,7 +8,7 @@ import { AuthenticationRoutePath } from '../routers/AppRouter';
 
 import './style.css'
 
-const PageTemplate = ({ children, title = 'Online Queue', show_navbar = true, check_token = true}) => {
+const PageTemplate = ({ children, title = 'Best Points', show_navbar = true, check_token = true}) => {
     document.title = title;
     const location = useLocation();
 
