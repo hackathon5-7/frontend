@@ -218,7 +218,7 @@ const MainPage = () => {
             // await fetch(BaseUrl + 'api/external/sectors/recom', {method:"POST"})
             let response = await Request.send({
                 method: 'POST',
-                url: 'http://localhost:8081/api/external/sectors/recom',
+                url: 'http://localhost:8081/api/external/sectors/recom/',
                 data: {
                     "filters": filters
                 },
