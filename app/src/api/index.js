@@ -1,16 +1,16 @@
 import axios from 'axios'
-import { AuthorizationTokenType } from '../Constants'
-import { GetAccessTokenCookie } from '../storage/CookiesService'
 
 export const POST = 'POST'
 export const GET = 'GET'
 export const DELETE = 'DELETE'
 export const PATCH = 'PATCH'
 
+axios.defaults.baseURL = 'http://localhost:8081';
+
 const _Request = {
     send: async ({ method, url, params = {}, data = {}, useToken = true, validStatuses = [200, 201] }) => {
         try {
-            url = _Request.getFullUrl(url, params)
+            //url = _Request.getFullUrl(url, params)
 
             const response = await axios({
                 method: method,
@@ -18,9 +18,9 @@ const _Request = {
                 data: method !== GET ? data : undefined,
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: useToken
-                        ? `${AuthorizationTokenType} ${GetAccessTokenCookie()}`
-                        : '',
+                    // Authorization: useToken
+                    //     ? `${AuthorizationTokenType} ${GetAccessTokenCookie()}`
+                    //     : '',
                 },
                 validateStatus: status => validStatuses.includes(status) // Проверяем, включен ли статус в список допустимых
             })

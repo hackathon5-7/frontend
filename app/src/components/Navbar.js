@@ -44,11 +44,11 @@ const MyNavbar = () => {
 					</Nav.Link>
 				</Nav> */}
 
-				<Nav style={{marginRight: '20px'}}>
+				{/* <Nav style={{marginRight: '20px'}}>
 					<Nav.Link as={Link} to={AuthenticationRoutePath} onClick={handleLogout}>
 						Выйти
 					</Nav.Link>
-				</Nav>
+				</Nav> */}
 			</Navbar.Collapse>
 		</Navbar>
 	);

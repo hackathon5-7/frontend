@@ -13,7 +13,7 @@ const AppRouter = () => {
 		<Router>
 			<Routes>
 				<Route path="*" element={
-					<PageTemplate >
+					<PageTemplate show_navbar={false}>
                         <MainPage />
 					</PageTemplate>
 				} />
