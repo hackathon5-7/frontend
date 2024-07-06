@@ -1,0 +1,16 @@
+.map {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    width: 400px;
+    height: 400px;
+  }
+  
+  .row {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+  }
+  
+  .sector {
+    border: 1px solid black;
+  }

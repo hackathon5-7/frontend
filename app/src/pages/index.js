@@ -12,18 +12,16 @@ const PageTemplate = ({ children, title = 'Online Queue', show_navbar = true, ch
     document.title = title;
     const location = useLocation();
 
-    if (!(location.pathname === AuthenticationRoutePath) && check_token && !checkTokenExist()) {
-        return <Navigate to={AuthenticationRoutePath} />
-    }
+    // if (!(location.pathname === AuthenticationRoutePath) && check_token && !checkTokenExist()) {
+    //     return <Navigate to={AuthenticationRoutePath} />
+    // }
 
     return (
         <div>
             {
                 show_navbar && <MyNavbar />
             }
-            <div className="mt-4">
-                {children}
-            </div>
+            {children}
 
             <NotificationContainer/>
         </div>
