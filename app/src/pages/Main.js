@@ -220,7 +220,7 @@ const MainPage = () => {
             "ageFrom": ageFrom,
             "ageTo": ageTo,
             "gender": gender,
-            "quantity": quantity,
+            "quantity": Number.parseInt(quantity),
             "income": income,
         };
         setFilterButtonStatusReady(false)
