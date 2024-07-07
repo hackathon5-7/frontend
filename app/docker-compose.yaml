@@ -7,3 +7,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:3000
+    networks:
+      - hackaton_hacknet
+
+
+networks:
+  hackaton_hacknet:
+    external: true
