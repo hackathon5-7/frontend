@@ -217,8 +217,8 @@ const MainPage = () => {
         }
 
         let filters = {
-            "ageFrom": ageFrom,
-            "ageTo": ageTo,
+            "ageFrom": Number.parseInt(ageFrom),
+            "ageTo": Number.parseInt(ageTo),
             "gender": gender,
             "quantity": Number.parseInt(quantity),
             "income": income,
